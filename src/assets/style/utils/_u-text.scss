@@ -1,0 +1,12 @@
+.u-text__marker {
+  background: linear-gradient(transparent 75%, var(--color-orange) 75%);
+}
+
+.u-text__inline-block {
+  display: inline-block;
+}
+
+.u-text__indent {
+  padding-inline-start: 1em;
+  text-indent: -1em;
+}

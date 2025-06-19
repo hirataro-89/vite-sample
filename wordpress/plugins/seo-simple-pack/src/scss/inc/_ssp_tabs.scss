@@ -1,0 +1,42 @@
+
+/* タブコンテンツ */
+.ssp-page {
+
+	.ssp-page__tabs {
+		padding-bottom: 6px;
+		overflow-y: auto;
+	}
+
+	.nav-tab-wrapper {
+		display: flex;
+		border-bottom: 1px solid #ddd;
+	}
+
+	.nav-tab {
+		background: rgba(0, 0, 0, 0.05);
+		border: none;
+		border-radius: 2px 2px 0 0;
+		cursor: pointer;
+
+		&.act_,
+		&:hover {
+			color: #000;
+			background: #fdfdfd;
+		}
+	}
+
+	.tab-contents {
+		display: none;
+		margin-bottom: 1em;
+		padding: 16px;
+
+		@include sp_admin {
+			padding: 0;
+		}
+
+		&.act_ {
+			display: block;
+		}
+	}
+
+}

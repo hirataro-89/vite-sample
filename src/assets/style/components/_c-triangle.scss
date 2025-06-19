@@ -1,0 +1,40 @@
+@use "../globals/"as *;
+
+.c-triangle {
+  aspect-ratio: 1/1;
+  width: rem(64);
+  background-color: var(--color-black);
+  display: inline-block;
+}
+
+.c-triangle--top {
+  clip-path: $clip-triangle-top;
+}
+
+.c-triangle--bottom {
+  clip-path: $clip-triangle-bottom;
+}
+
+.c-triangle--left {
+  clip-path: $clip-triangle-left;
+}
+
+.c-triangle--right {
+  clip-path: $clip-triangle-right;
+}
+
+.c-triangle--lower-left {
+  clip-path: $clip-triangle-lower-left;
+}
+
+.c-triangle--upper-left {
+  clip-path: $clip-triangle-upper-left;
+}
+
+.c-triangle--lower-right {
+  clip-path: $clip-triangle-lower-right;
+}
+
+.c-triangle--upper-right {
+  clip-path: $clip-triangle-upper-right;
+}

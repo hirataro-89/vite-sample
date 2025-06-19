@@ -1,0 +1,50 @@
+@use "../globals/"as *;
+
+.c-button {
+  padding: rem(14) rem(60);
+  position: relative;
+  display: inline-block;
+  font-size: rem(15);
+  line-height: 1.2;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-black);
+  border: 1px solid currentColor;
+  background-color: var(--color-white);
+}
+
+.c-button::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: rem(20);
+  width: rem(8);
+  height: rem(8);
+  border-block-start: rem(2) solid var(--color-black);
+  border-inline-end: rem(2) solid var(--color-black);
+  transform: translateY(-50%) rotate(45deg);
+  transition: .3s;
+}
+
+.c-button:hover {
+  @include mq(md) {
+      opacity: 1;
+  }
+}
+
+.c-button:hover::before {
+  @include mq(md){
+      right: rem(15);
+  }
+}
+
+// Modifier
+.c-button.c-button--black {
+  color: var(--color-white);
+  background-color: var(--color-black);
+}
+
+.c-button.c-button--black::before {
+  border-block-start: rem(2) solid currentColor;
+  border-inline-end: rem(2) solid currentColor;
+}

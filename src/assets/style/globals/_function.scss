@@ -1,0 +1,26 @@
+@use "sass:math";
+
+
+// 数値のみを取り出す
+// 参照：https://css-tricks.com/snippets/sass/strip-unit-function/
+@function strip-unit($number) {
+  @if type-of($number) == "number" and not unitless($number) {
+    @return math.div($number, $number * 0 + 1);
+  }
+  @return $number;
+}
+
+
+@function vw($window_width, $size) {
+	@return math.div($size, $window_width) * 100vw;
+}
+
+
+// remへの計算式（16pxを基準としている。10pxを基準とする場合は16を10に変更する）
+@function rem($pixels) {
+  @return math.div($pixels, 16) * 1rem;
+}
+
+@function clamp-func($size) {
+  @return clamp((($size * 0.75) * 1px), math.div($size, 1920) * 100vw, ($size * 1px));
+}

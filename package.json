@@ -1,0 +1,48 @@
+{
+  "name": "wp-dev-env",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@splidejs/splide": "^4.1.4",
+    "@wordpress/env": "5.14.0",
+    "autoprefixer": "^10.4.19",
+    "chokidar": "^3.6.0",
+    "imagemin": "^9.0.0",
+    "imagemin-webp": "^8.0.0",
+    "kiso.css": "^1.1.4",
+    "postcss": "^8.4.45",
+    "resolve": "^1.22.8",
+    "sharp": "^0.33.4",
+    "vite-plugin-handlebars": "^2.0.0",
+    "vite-plugin-image-optimizer": "^1.1.8"
+  },
+  "scripts": {
+    "dev": "vite --host",
+    "build": "rm -rf dist && vite build",
+    "build:wp": "vite build --mode wp",
+    "preview": "vite preview",
+    "wp-start": "wp-env start",
+    "wp-stop": "wp-env stop",
+    "format": "yarn run _typecheck && yarn run _lint-fix && yarn run _prettier-fix",
+    "_typecheck": "yarn run tsc --noEmit ",
+    "_lint": "eslint --ext .ts,.js --ignore-path .gitignore . && stylelint \"**/*.{scss,css}\"",
+    "_prettier": "prettier --check \"**/*.{html,scss,ts,js}\" --ignore-path .prettierignore",
+    "_lint-fix": "eslint --fix --ext .ts,.js --ignore-path .gitignore . && stylelint --fix \"**/*.{scss,css}\"",
+    "_prettier-fix": "prettier --write \"**/*.{html,scss,ts,js}\" --ignore-path .prettierignore",
+    "wp-contents export": "wp-env run cli wp db export /var/www/html/wp-content/uploads/backup.sql",
+    "wp-contents import": "wp-env run cli wp db reset --yes && wp-env run cli wp db import /var/www/html/wp-content/uploads/backup.sql"
+  },
+  "devDependencies": {
+    "eslint": "8.56.0",
+    "eslint-config-prettier": "9.1.0",
+    "glob": "10.3.10",
+    "prettier": "3.2.4",
+    "sass": "1.70.0",
+    "stylelint": "16.2.0",
+    "stylelint-config-recess-order": "4.4.0",
+    "stylelint-config-standard-scss": "13.0.0",
+    "vite": "5.0.13"
+  }
+}

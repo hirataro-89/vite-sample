@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Title</title>
+  <link rel="stylesheet" href="/assets/style/style.scss" />
+  <script src="/assets/js/script.js" type="module"></script>
+</head>
+
+<body>
+  {{> p-header}}
+
+  <main class="l-top">
+    <section class="p-mv">
+      <div class="p-mv__inner">
+        <div class="p-mv__title-wrap">
+          <h2 class="p-mv__main-title">メインタイトルだよだよ</h2>
+          <p class="p-mv__sub-title">ここにサブタイトルが入ります。<br>ここにサブタイトルが入ります。ここにサブタイトルが入ります。<br>ここにサブタイトルが入ります。</p>
+        </div>
+        <div class="p-mv__splide splide" aria-label="main-visual">
+          <div class="splide__track">
+            <ul class="splide__list">
+              <li class="splide__slide">
+                <div class="splide__slide-image">
+                  <picture>
+                    <source srcset="/images/image_mv_01.webp" type="image/webp">
+                    <img src="/images/image_mv_01.png" width="512" height="512" alt="">
+                  </picture>
+                </div>
+              </li>
+              <li class="splide__slide">
+                <div class="splide__slide-image">
+                  <picture>
+                    <source srcset="/images/image_mv_02.webp" type="image/webp">
+                    <img src="/images/image_mv_02.png" width="512" height="512" alt="">
+                  </picture>
+                </div>
+              </li>
+              <li class="splide__slide">
+                <div class="splide__slide-image">
+                  <picture>
+                    <source srcset="/images/image_mv_03.webp" type="image/webp">
+                    <img src="/images/image_mv_03.png" width="512" height="512" alt="">
+                  </picture>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="p-sample l-top__sample">
+      <div class="p-sample__inner l-inner">
+        <h2 class="p-sample__title c-section-title" data-title="sample">sample</h2>
+        <div class="p-sample__link-wrap">
+          <a class="p-sample__link" href="/_components.html">パーツ一覧へ</a>
+          <p>↑のページで共通パーツを制作してください</p>
+        </div>
+        <p>背景画像の読み込み</p>
+        <div class="p-sample__bg"></div>
+        
+      </div>
+    </section>
+  </main>
+  {{> p-footer}}
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
+    integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
+    crossorigin='anonymous'></script>
+</body>
+
+</html>

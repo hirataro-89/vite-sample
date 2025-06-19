@@ -1,0 +1,61 @@
+
+/* ------------------------------
+ * Switch button
+ * ------------------------------ */
+
+/* The switch - the box around the slider */
+.ssp_switch {
+	position: relative;
+	display: inline-block;
+	width: 48px;
+	height: 24px;
+	margin: 0 8px;
+}
+
+/* Hide default HTML checkbox */
+.ssp_switch input {
+	display: none;
+}
+
+/* The slider */
+.ssp_switch__slider {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: #ccc;
+	box-shadow: 0 0 0 2px #fff, 0 0 0 3px #ddd;
+	cursor: pointer;
+	-webkit-transition: 0.4s;
+	transition: 0.4s;
+}
+
+.ssp_switch__slider::before {
+	position: absolute;
+	right: 28px;
+	bottom: 4px;
+	width: 16px;
+	height: 16px;
+	background-color: #fff;
+	-webkit-transition: 0.4s;
+	transition: 0.4s;
+	content: "";
+}
+
+input:checked + .ssp_switch__slider {
+	background-color: #2196f3;
+}
+
+input:checked + .ssp_switch__slider::before {
+	right: 4px;
+}
+
+/* Rounded sliders */
+.ssp_switch__slider.-round {
+	border-radius: 34px;
+}
+
+.ssp_switch__slider.-round::before {
+	border-radius: 50%;
+}

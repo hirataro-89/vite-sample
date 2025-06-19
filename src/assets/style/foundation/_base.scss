@@ -1,0 +1,153 @@
+/* リキッドレイアウト対応 */
+@use "../globals" as *;
+
+// デザインカンプのinnerの幅を指定（リキッドレイアウト用）
+$inner: 1080px;
+
+@if $startFrom == sp {
+  //スマホファースト
+  html {
+    //~375px
+    @media (max-width: 375px) {
+      font-size: vw(375, 16);
+    }
+
+    //375px~767px
+    font-size: 16px;
+
+    @include mq("md") {
+      font-size: vw(strip-unit($inner), 16);
+    }
+
+    //inner~max-screen
+    @media (min-width: $inner) {
+      font-size: 16px;
+    }
+  }
+} @else {
+  //PCファースト
+  html {
+    font-size: 16px;
+
+    @media (max-width: $inner) {
+      font-size: vw(strip-unit($inner), 16);
+    }
+
+    @include mq("md") {
+      font-size: 16px;
+    }
+
+    //~375px
+    @media (max-width: 375px) {
+      font-size: vw(375, 16);
+    }
+  }
+}
+
+// Safari対策
+a[href^="tel"] {
+  text-decoration: none;
+}
+
+a {
+  color: inherit;
+  -webkit-tap-highlight-color: transparent; /* 強調をなくす */
+}
+a:hover {
+  text-decoration: none;
+}
+
+img,
+svg {
+  vertical-align: middle;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+*,
+::before,
+::after {
+  --clamp-root-font-size: 16;
+  --clamp-slope: calc((var(--clamp-max) - var(--clamp-min)) / (var(--clamp-viewport-max) - var(--clamp-viewport-min)));
+  --clamp-y-axis-intersection: calc(var(--clamp-min) - (var(--clamp-slope) * var(--clamp-viewport-min)));
+  --clamp-preffered-value: calc(
+    var(--clamp-y-axis-intersection) * (1rem / var(--clamp-root-font-size)) + (var(--clamp-slope) * 100vi)
+  );
+  --clamp: clamp(
+    calc(var(--clamp-min) * (1rem / var(--clamp-root-font-size))),
+    var(--clamp-preffered-value),
+    calc(var(--clamp-max) * (1rem / var(--clamp-root-font-size)))
+  );
+
+  font-size: var(--clamp);
+}
+
+/* bodyにデフォルト値を設定する */
+body {
+  font-family: var(--base-font-family);
+  --clamp-viewport-min: 375;
+  --clamp-viewport-max: 1200;
+  --clamp-min: 14;
+  --clamp-max: 16;
+}
+
+/* 👍使い方 */
+// .title {
+//   --clamp-min: 20;
+//   --clamp-max: 24;
+// }
+
+
+[data-device="pc"] {
+  // pcのみ表示
+  @media (max-width: 767px) {
+    display: none;
+  }
+}
+
+[data-device="sp"] {
+  // spのみ表示
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+// cursor:pointer
+:where(
+    :any-link,
+    button,
+    [type='button'],
+    [type='reset'],
+    [type='submit'],
+    label[for],
+    select,
+    summary,
+    [role='tab'],
+    [role='button']
+  ) {
+  cursor: pointer;
+}
+
+// iosでボタンをダブルタップしてしまったときに拡大されてしまうのを防止
+:where(button, [type='button'], [type='reset'], [type='submit']) {
+  touch-action: manipulation;
+}
+
+// フォーカスのデフォルトをなくす
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+// フォームのデフォルトのフォントサイズを16pxにする
+// 16px未満だとiosでズームされてしまうため
+input[type='text'] {
+  font-size: 1rem; /* = 16px */
+}
+
+textarea {
+  field-sizing: content;
+}

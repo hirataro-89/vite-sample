@@ -1,0 +1,30 @@
+@use "../globals/" as *;
+
+@if $startFrom == sp {
+  .l-inner {
+    max-width: rem(560);
+    width: 100%;
+    padding-right: var(--padding-sp);
+    padding-left: var(--padding-sp);
+    margin-right: auto;
+    margin-left: auto;
+    @include mq("md") {
+      max-width: calc(var(--inner) + var(--padding-pc) * 2);
+      padding-right: var(--padding-pc);
+      padding-left: var(--padding-pc);
+    }
+  }
+} @else {
+  .l-inner {
+    max-width: calc(var(--inner) + var(--padding-pc) * 2);
+    padding-right: var(--padding-pc);
+    padding-left: var(--padding-pc);
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    @include mq("md") {
+      padding-right: var(--padding-sp);
+      padding-left: var(--padding-sp);
+    }
+  }
+}

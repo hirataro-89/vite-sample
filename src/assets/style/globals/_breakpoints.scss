@@ -1,0 +1,51 @@
+// どっちファーストの設定（"sp" or "pc"）
+$startFrom: sp;
+
+// デフォルト値を設定
+$mediaqueries: (
+	sm: "screen",
+	md: "screen",
+	lg: "screen",
+	xl: "screen",
+);
+
+$breakpoints: null;
+
+@if $startFrom == sp {
+	//スマホファースト
+	$breakpoints: (
+		sm: 600,
+		md: 768,
+		lg: 1024,
+		xl: 1440,
+	);
+
+	//メディアクエリー
+	$mediaqueries: (
+		sm: "screen and (min-width: #{map-get($breakpoints,'sm')}px)",
+		md: "screen and (min-width: #{map-get($breakpoints,'md')}px)",
+		lg: "screen and (min-width: #{map-get($breakpoints,'lg')}px)",
+		xl: "screen and (min-width: #{map-get($breakpoints,'xl')}px)",
+	);
+} @else {
+	$breakpoints: (
+		xl: 1440,
+		lg: 1023,
+		md: 767,
+		sm: 600,
+	);
+
+	$mediaqueries: (
+		sm: "screen and (max-width: #{map-get($breakpoints,'sm')}px)",
+		md: "screen and (max-width: #{map-get($breakpoints,'md')}px)",
+		lg: "screen and (max-width: #{map-get($breakpoints,'lg')}px)",
+		xl: "screen and (min-width: #{map-get($breakpoints,'xl')}px)",
+	);
+}
+
+// @include mq(){}で書くとブレークポイントが反映される（初期値はmd）
+@mixin mq($mediaquery: md) {
+	@media #{map-get($mediaqueries, $mediaquery)} {
+		@content;
+	}
+}

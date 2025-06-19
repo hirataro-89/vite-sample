@@ -1,0 +1,64 @@
+@use "../globals/"as *;
+
+.c-image-text {
+  display: grid;
+  align-items: center;
+  grid-template:
+    "image gutter text margin"  auto / 
+    calc(600/1440 * 100%) 16px 1fr max(calc((100% - var(--inner))/2), 32px );
+}
+.c-image-text--reverse{
+  grid-template:
+    "margin text gutter image"  auto / 
+    max(calc((100% - var(--inner))/2), 32px ) 1fr  16px  calc(600/1440 * 100%);
+}
+
+.c-image-text__image{
+  grid-area:image;
+}
+
+.c-image-text__image img{
+  height:300px;
+  width:100%;
+  object-fit:cover;
+}
+
+.c-image-text__text{
+  grid-area:text;
+}
+
+.c-image-text02 {
+  display: grid;
+  align-items: center;
+  grid-template:
+    "image text margin"  auto / 
+    calc(600/1440 * 100%) 1fr max((100% - var(--inner))/2, 32px );
+}
+.c-image-text02--reverse{
+  grid-template:
+    "margin text image"  auto / 
+    max((100% - var(--inner))/2, 32px ) 1fr calc(600/1440 * 100%);
+}
+
+.c-image-text02__image{
+  grid-area:image;
+}
+
+.c-image-text02__image img{
+  height:300px;
+  width:100%;
+  object-fit:cover;
+}
+
+.c-image-text02__text{
+  grid-area:text;
+  padding:20px 0 20px 20px;
+  margin-left:-100px;
+  background:#fff;
+}
+
+.c-image-text02--reverse .c-image-text02__text{
+  padding:20px 20px 20px 0;
+  margin-left:auto;
+  margin-right:-100px;
+}

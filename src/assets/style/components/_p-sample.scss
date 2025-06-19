@@ -1,0 +1,77 @@
+@use "../globals/" as *;
+
+/* 下記サンプル 構築時は削除してください */
+.p-sample {
+  padding-block: var(--spacing-xl);
+}
+
+.p-sample__link {
+  display: inline-block;
+  font-size: rem(24);
+  margin-block-start: var(--spacing-xl);
+  text-decoration: underline;
+}
+
+@media (any-hover: hover) {
+  .p-sample__link:hover {
+    text-decoration: none;
+  }
+}
+
+.p-sample__bg {
+  aspect-ratio: 1/1;
+  width: 300px;
+  background-image: image-set(
+    url("/images/bg_sample.webp") type("image/webp"),
+    url("/images/bg_sample.png") type("image/png")
+  );
+  background-size: contain;
+}
+
+.p-sample__image {
+  max-width: 400px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+.p-sample__image img {
+  object-fit: cover;
+}
+
+.p-sample__text-block {
+  margin-block: var(--spacing-xl);
+}
+
+.p-sample__head {
+  font-size: 24px;
+  @include mq(md) {
+      font-size: 32px;
+  }
+}
+
+.p-sample__text {
+  letter-spacing: 0.05em;
+  height: 1.5em;
+}
+
+.p-sample__title2 {
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+  display: inline-block;
+  margin-block-end: var(--spacing-md);
+  @include mq(md) {
+    font-size: 24px;
+  }
+}
+
+.p-sample__divider {
+  margin-block: var(--spacing-lg-2);
+}
+
+.p-sample__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(64px, 100%), 1fr));
+  gap: var(--spacing-md);
+}
+

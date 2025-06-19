@@ -1,0 +1,9 @@
+// 三角形のcss clip-path
+$clip-triangle-top: polygon(50% 0, 100% 100%, 0 100%); // top
+$clip-triangle-bottom: polygon(0 0, 100% 0, 50% 100%); // right
+$clip-triangle-right: polygon(0 0, 100% 50%, 0 100%); // bottom
+$clip-triangle-left: polygon(0 50%, 100% 0, 100% 100%); // left
+$clip-triangle-lower-left: polygon(0 0, 100% 100%, 0 100%); // lower-left
+$clip-triangle-upper-left: polygon(0 0, 100% 0, 0 100%); //upper-left
+$clip-triangle-lower-right: polygon(100% 0, 100% 100%, 0 100%); // lower-right
+$clip-triangle-upper-right: polygon(0 0, 100% 0, 100% 100%); // upper-right

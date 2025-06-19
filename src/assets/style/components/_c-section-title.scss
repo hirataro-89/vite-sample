@@ -1,0 +1,45 @@
+@use "../globals/"as *;
+
+.c-section-title {
+  position: relative;
+  font-size: rem(40);
+  line-height: 1;
+  text-transform: uppercase;
+  text-align: center;
+  @include mq(md){
+      font-size: rem(60);
+  }
+}
+
+.c-section-title.c-section-title--left {
+  text-align: left;
+}
+
+.c-section-title.c-section-title--right {
+  text-align: right;
+}
+
+.c-section-title::before {
+  content: attr(data-title);
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--color-gray);
+  font-size: rem(80);
+  @include mq(md){
+      font-size: rem(120);
+  }
+}
+
+.c-section-title.c-section-title--left::before {
+  left: 0;
+  transform: translate(0, -50%);
+}
+
+.c-section-title.c-section-title--right::before {
+  right: 0;
+  left: initial;
+  transform: translate(0, -50%);
+}

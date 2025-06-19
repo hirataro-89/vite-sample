@@ -1,0 +1,533 @@
+@charset "UTF-8";
+/* リキッドレイアウト対応 */
+:root {
+  /* color */
+  --text-color: #0D2936;
+  --accent-color: #408F95;
+  --primary-color: #ff0000;
+  --secondary-color: #0000ff;
+  --white: #fff;
+  /* font-weight */
+  --regular: 300;
+  --normal: 400;
+  --medium: 500;
+  --bold: 700;
+  /* font-family */
+  --base-font-family: "Noto Sans JP", sans-serif;
+  --second-font-family: "Gotu", sans-serif;
+  --title-font-family: "Lato", sans-serif;
+  /* 8pxを余白の基準とした余白ルール */
+  --leading-trim: calc((1em - 1lh) / 2);
+  --spacing-unit: 0.5rem;
+  --spacing-xs: calc(var(--spacing-unit) / 2);
+  --spacing-sm: var(--spacing-unit);
+  --spacing-md: calc(var(--spacing-unit) * 2);
+  --spacing-lg: calc(var(--spacing-unit) * 3);
+  --spacing-xl: calc(var(--spacing-unit) * 5);
+  --spacing-2xl: calc(var(--spacing-unit) * 8);
+  --spacing-3xl: calc(var(--spacing-unit) * 13);
+  /* line-height分の余白を打ち消す */
+  --spacing-xs-trim: calc(var(--spacing-xs) + var(--leading-trim));
+  --spacing-sm-trim: calc(var(--spacing-sm) + var(--leading-trim));
+  --spacing-md-trim: calc(var(--spacing-md) + var(--leading-trim));
+  --spacing-lg-trim: calc(var(--spacing-lg) + var(--leading-trim));
+  --spacing-xl-trim: calc(var(--spacing-xl) + var(--leading-trim));
+  --spacing-2xl-trim: calc(var(--spacing-2xl) + var(--leading-trim));
+  --spacing-3xl-trim: calc(var(--spacing-3xl) + var(--leading-trim));
+  /* --leading-trimの使い方 */
+}
+
+@supports not (top: 1lh) {
+  :root {
+    --leading-trim: 0px;
+    /* `px`などの単位が必要 */
+  }
+}
+/* inner */
+/* padding */
+body {
+  font-family: var(--base-font-family);
+}
+
+[data-device=pc] {
+  display: none !important;
+}
+@media screen and (min-width: 768px) {
+  [data-device=pc] {
+    display: block !important;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  [data-device=sp] {
+    display: none !important;
+  }
+}
+
+html {
+  font-size: 16px;
+}
+@media (max-width: 375px) {
+  html {
+    font-size: 4.2666666667vw;
+  }
+}
+@media screen and (min-width: 768px) {
+  html {
+    font-size: 1.4814814815vw;
+  }
+}
+@media (min-width: 1080px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+a[href^=tel] {
+  text-decoration: none;
+}
+
+a {
+  color: inherit;
+  -webkit-tap-highlight-color: transparent; /* 強調をなくす */
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+img,
+svg {
+  vertical-align: middle;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+*,
+::before,
+::after {
+  --clamp-root-font-size: 16;
+  --clamp-slope: calc((var(--clamp-max) - var(--clamp-min)) / (var(--clamp-viewport-max) - var(--clamp-viewport-min)));
+  --clamp-y-axis-intersection: calc(var(--clamp-min) - (var(--clamp-slope) * var(--clamp-viewport-min)));
+  --clamp-preffered-value: calc(
+    var(--clamp-y-axis-intersection) * (1rem / var(--clamp-root-font-size)) + (var(--clamp-slope) * 100vi)
+  );
+  --clamp: clamp(
+    calc(var(--clamp-min) * (1rem / var(--clamp-root-font-size))),
+    var(--clamp-preffered-value),
+    calc(var(--clamp-max) * (1rem / var(--clamp-root-font-size)))
+  );
+  font-size: var(--clamp);
+}
+
+/* bodyにデフォルト値を設定する */
+body {
+  --clamp-viewport-min: 375;
+  --clamp-viewport-max: 1200;
+  --clamp-min: 14;
+  --clamp-max: 16;
+}
+
+/* 👍使い方 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default padding */
+ul,
+ol {
+  padding: 0;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Set core root defaults */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* Remove list styles on ul, ol elements with a class attribute */
+ul,
+ol {
+  list-style: none;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img {
+  max-width: 100%;
+  display: block;
+  width: 100%;
+}
+
+/* Natural flow and rhythm in articles by default */
+article > * + * {
+  margin-top: 1em;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Blur images when they have no alt attribute */
+img:not([alt]) {
+  filter: blur(10px);
+}
+
+/* フォームリセット */
+input,
+button,
+select,
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  font: inherit;
+  outline: none;
+}
+input:focus,
+button:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+}
+input:focus-visible,
+button:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: -webkit-focus-ring-color auto 1px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+input[type=checkbox],
+input[type=radio] {
+  display: none;
+}
+
+input[type=submit],
+input[type=button],
+label,
+button,
+select {
+  cursor: pointer;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+/* ホバー */
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.3s;
+}
+
+.header {
+  height: 2.5rem;
+  background-color: #fff;
+}
+@media screen and (min-width: 768px) {
+  .header {
+    height: 4.375rem;
+  }
+}
+
+.header__inner {
+  padding-left: 0.9375rem;
+  height: inherit;
+  display: flex;
+  justify-content: space-between;
+}
+@media screen and (min-width: 768px) {
+  .header__inner {
+    padding: 0 3.125rem;
+  }
+}
+
+.header__logo {
+  max-width: 4.625rem;
+  width: 100%;
+  height: inherit;
+}
+@media screen and (min-width: 768px) {
+  .header__logo {
+    max-width: 6.25rem;
+  }
+}
+
+.header__logo a {
+  height: inherit;
+  display: flex;
+  align-items: center;
+}
+
+.header__logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.header__nav {
+  display: none;
+  height: inherit;
+}
+@media screen and (min-width: 768px) {
+  .header__nav {
+    display: block;
+  }
+}
+
+.header__nav-list {
+  display: flex;
+  height: inherit;
+}
+
+.header__nav-item {
+  height: inherit;
+}
+
+.header__nav-item.header__nav-item--contact {
+  margin-left: 0.9375rem;
+  display: flex;
+  align-items: center;
+}
+
+.header__nav-item a {
+  padding: 0 0.9375rem;
+  height: inherit;
+  display: flex;
+  align-items: center;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1;
+  color: #333;
+  text-transform: uppercase;
+}
+
+.header__nav-item.header__nav-item--contact a {
+  padding: 0.625rem 1.25rem;
+  position: relative;
+  height: initial;
+  color: #fff;
+  background-color: #DE8430;
+}
+
+.header__nav-item.header__nav-item--contact a::after {
+  content: "";
+  margin-left: 0.625rem;
+  width: 0.6875rem;
+  height: 0.75rem;
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.header__hamburger {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: none;
+  position: relative;
+  z-index: 999;
+  width: 2.5rem;
+  height: inherit;
+  background-color: #DE8430;
+  cursor: pointer;
+  transition: 0.3s;
+}
+@media screen and (min-width: 768px) {
+  .header__hamburger {
+    display: none;
+  }
+}
+
+.header__hamburger.is-open {
+  background-color: transparent;
+}
+
+.header__hamburger span {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  display: block;
+  width: 0.9375rem;
+  height: 1px;
+  background-color: #fff;
+  transition: 0.5s;
+}
+
+.header__hamburger span:nth-of-type(1) {
+  top: -0.25rem;
+}
+
+.header__hamburger span:nth-of-type(2) {
+  top: 0;
+}
+
+.header__hamburger span:nth-of-type(3) {
+  top: 0.25rem;
+}
+
+.header__hamburger.is-open span:nth-of-type(1) {
+  top: 0;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.header__hamburger.is-open span:nth-of-type(2) {
+  opacity: 0;
+}
+
+.header__hamburger.is-open span:nth-of-type(3) {
+  top: -0.125rem;
+  transform: translateX(-50%) rotate(-45deg);
+}
+
+.header__drawer {
+  padding: 14.25rem 0;
+  display: none;
+  position: absolute;
+  z-index: 900;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(98, 58, 20, 0.95);
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+.header__drawer::-webkit-scrollbar {
+  display: none;
+}
+
+.header__drawer-item a {
+  padding: 0.9375rem 0;
+  display: block;
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.header__drawer-item.header__drawer-item--contact a::after {
+  content: "";
+  margin-bottom: 0.3125rem;
+  margin-left: 1.25rem;
+  width: 0.9375rem;
+  height: 0.9375rem;
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.inner {
+  max-width: 37.5rem;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media screen and (min-width: 768px) {
+  .inner {
+    max-width: 1130px;
+    padding-right: 25px;
+    padding-left: 25px;
+  }
+}
+
+.u-color--red {
+  color: var(--primary-color);
+}
+@media screen and (min-width: 768px) {
+  .u-color--red {
+    color: var(--accent-color);
+  }
+}
+
+/* 下記サンプル 構築時は削除してください */
+body {
+  background-color: var(--white);
+}
+
+.bg {
+  width: 300px;
+  height: 300px;
+  background-image: image-set(url("../../images/background.avif") type("image/avif"), url("../../images/background.png") type("image/png"));
+  background-size: contain;
+}
+
+.image {
+  max-width: 400px;
+}
+
+.sample {
+  align-items: center;
+}
+@media screen and (min-width: 768px) {
+  .sample {
+    display: flex;
+  }
+}
+
+.sample p {
+  font-size: 1.25rem;
+}
+
+body.page-toppage {
+  display: block;
+}
+
+body.page-about {
+  display: block;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}

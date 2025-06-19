@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Title</title>
+  <link rel="stylesheet" href="/assets/style/style.scss" />
+  <script src="/assets/js/script.js" type="module"></script>
+</head>
+
+<body>
+  <main class="p-sample">
+    <div class="l-inner">
+      <h1 class="p-sample__head">
+        パーツ一覧
+      </h1>
+      <div class="p-sample__link-wrap">
+        <a class="p-sample__link" href="/">トップへ</a>
+      </div>
+      <div class="p-sample__text-block">
+        <h2 class="p-sample__title2 u-text__marker">テキスト関係</h2>
+        <p class="p-sample__text">
+          下記に各パーツのサンプルを配置しています。本プロジェクトで使用する共通パーツを追加していってください。
+        </p>
+        <hr class="p-sample__divider">
+        <p class="p-sample__text u-text__indent">
+          ※注意書きを記載したい場合は`u-text__indent`を付与してください。(indentを付与するため)
+        </p>
+        <hr class="p-sample__divider">
+        <p class="p-sample__text u-text__inline-block">
+          不自然な改行を避けるため、改行は`br`ではなくinline-block要素にした`span`で調整してください。
+          <span class="u-text__inline-block">
+            （`u-text__inline-block`を付与したspanタグで囲むことで改行位置を調整できます）
+          </span>
+        </p>
+      </div>
+    </div>
+
+    <hr class="p-sample__divider">
+
+    <div class="l-inner">
+      <h2 class="p-sample__title2 u-text__marker">セクションタイトル</h2>
+
+      <!-- 中央寄せ -->
+      <h2 class="c-section-title" data-title="about">about</h2>
+
+      <hr class="p-sample__divider">
+
+      <!-- 左寄せ -->
+      <h2 class="c-section-title c-section-title--left" data-title="about">about
+      </h2>
+
+      <hr class="p-sample__divider">
+
+      <!-- 右寄せ -->
+      <h2 class="c-section-title c-section-title--right" data-title="about">about
+      </h2>
+    </div>
+
+    <hr class="p-sample__divider">
+
+    <div class="l-inner">
+      <h2 class="p-sample__title2 u-text__marker">ボタン</h2>
+      <div class="p-sample__button">
+        <a href="#" class="c-button">view more</a>
+      </div>
+      <!-- 黒色ver -->
+      <div class="p-sample__button">
+        <a href="#" class="c-button c-button--black">view more</a>
+      </div>
+    </div>
+
+    <hr class="p-sample__divider">
+
+    <div class="l-inner">
+      <h2 class="p-sample__title2 u-text__marker">三角矢印</h2>
+      <div class="p-sample__grid">
+        <span class="c-triangle c-triangle--top"></span>
+        <span class="c-triangle c-triangle--bottom"></span>
+        <span class="c-triangle c-triangle--left"></span>
+        <span class="c-triangle c-triangle--right"></span>
+        <span class="c-triangle c-triangle--lower-left"></span>
+        <span class="c-triangle c-triangle--upper-left"></span>
+        <span class="c-triangle c-triangle--lower-right"></span>
+        <span class="c-triangle c-triangle--upper-right"></span>
+      </div>
+    </div>
+
+
+
+    <hr class="p-sample__divider">
+
+    <div class="l-inner">
+      <h2 class="p-sample__title2 u-text__marker">画像だけコンテナ幅からはみ出て画面端まで広がるレイアウト</h2>
+    </div>
+    <div class="c-image-text">
+      <div class="c-image-text__image">
+        <img src="https://placehold.jp/600x300.png" alt="">
+      </div>
+      <div class="c-image-text__text">
+        <h2>タイトル</h2>
+        <p>
+          テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+        </p>
+      </div>
+    </div>
+
+    <div class="c-image-text c-image-text--reverse">
+      <div class="c-image-text__image">
+        <img src="https://placehold.jp/600x300.png" alt="">
+      </div>
+      <div class="c-image-text__text">
+        <h2>タイトル</h2>
+        <p>
+          テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+        </p>
+      </div>
+    </div>
+
+    <div class="c-image-text02">
+      <div class="c-image-text02__image">
+        <img src="https://placehold.jp/600x300.png" alt="">
+      </div>
+      <div class="c-image-text02__text">
+        <h2>タイトル</h2>
+        <p>
+          テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+        </p>
+      </div>
+    </div>
+
+    <div class="c-image-text02 c-image-text02--reverse">
+      <div class="c-image-text02__image">
+        <img src="https://placehold.jp/600x300.png" alt="">
+      </div>
+      <div class="c-image-text02__text">
+        <h2>タイトル</h2>
+        <p>
+          テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+        </p>
+      </div>
+    </div>
+
+  </main>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'
+    integrity='sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=='
+    crossorigin='anonymous'></script>
+</body>
+
+</html>

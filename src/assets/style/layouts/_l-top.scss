@@ -1,0 +1,8 @@
+@use "../globals/"as *;
+
+.l-top__about {
+  margin-block-start: var(--spacing-xl);
+  @include mq(md) {
+    margin-block-start: var(--spacing-3xl);
+  }
+}
