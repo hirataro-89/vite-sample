@@ -2,12 +2,13 @@
 
 .c-section-title {
   position: relative;
-  font-size: rem(40);
+  font-size: calc(40 * var(--to-rem));
   line-height: 1;
   text-transform: uppercase;
   text-align: center;
-  @include mq(md){
-      font-size: rem(60);
+
+  @include mq(md) {
+    font-size: calc(60 * var(--to-rem));
   }
 }
 
@@ -17,20 +18,6 @@
 
 .c-section-title.c-section-title--right {
   text-align: right;
-}
-
-.c-section-title::before {
-  content: attr(data-title);
-  position: absolute;
-  z-index: -1;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: var(--color-gray);
-  font-size: rem(80);
-  @include mq(md){
-      font-size: rem(120);
-  }
 }
 
 .c-section-title.c-section-title--left::before {

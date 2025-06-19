@@ -1,0 +1,8 @@
+@use "../globals/"as *;
+
+.l-page {
+  padding-block-start: calc(64 * var(--to-rem));
+  @include mq(md) {
+    padding-block-start: calc(80 * var(--to-rem));
+  }
+}

@@ -12,24 +12,15 @@
 
 ## 必要環境
 - Node.js （18系以上推奨）
-- Docker(WordPress化する場合のみ)
-  - [こちら](https://matsuand.github.io/docs.docker.jp.onthefly/get-docker/)からDockerをインストール
-  - アプリを立ち上げ、アカウント登録し起動しておく
-  - ※WordPress化しないならこの工程は不要
 
 ## 開発環境立ち上げ
-- Dockerを立ち上げる(WordPress化する場合のみ)
-   - macの場合、ステータスバーにDockerのアイコンが表示されていて`running`となっていればOK
 - `yarn`とたたいて`node_module`をインストール
-
 
 ## 静的制作時
 - `yarn dev`
   - ローカルサーバー`localhost:5173`が立ち上がる
 - 静的資材は基本`src`フォルダ内で作成。
 - CSSやJavaScriptは直接`.scss`ファイルや`.js`を参照すれば、Viteがいい感じにしてくれます。
-- ※WordPress化しない場合、`wordpress`ディレクトリは不要なので削除でOK
-  - gitignoreに記載されているコメントアウトも消す（監視対象外にするため）
 
 ```html
 <link rel="stylesheet" href="/assets/style/style.scss" />
@@ -45,18 +36,6 @@
 ```
 
 あとは通常の手順でHTML・CSS・JavaScriptを開発していけばOK。
-
-## WordPressテーマ開発時
-- `yarn wp-start`
-  - 初回は色々ダウンロードするので時間かかる
-- `wp-start`が立ち上がると`localhost:8888`にアクセスできるようになる
-  - ここがWordPressのローカル環境
-  - 初回ログイン時は別テーマがアクティブになっているので、「TEMPLATE NAME」をアクティブにしてください
-- 静的制作時と同様に`yarn dev`
-- 開発時(`WP_DEBUG=true`時(後述します))、CSSやJavaScriptは静的作成時と同じように`src`フォルダ内のファイルを操作してください
-  - Viteのローカルサーバーのものを参照しているので
-- 仕様上viteのホットリロードは止めているので手動でリロードしてください
-- 終了時は`wp-stop`でDockerのコンテナを停止
 
 ## 画像の格納先、読み込み方について
 画像は`src/public/images/`に格納してください。<br>
@@ -112,51 +91,9 @@ image.addEventListener("load", () => {
 })
 ```
 
-▼PHP
-```php
-<img src="<?php echo get_template_directory_uri();?>/images/static.png" alt="" width="300" height="300" />
-```
-
-上記のように静的資材HTMLのコードの頭に`<?php echo get_template_directory_uri();?>`を付与することでうまく読み込めるようになります。
-
 ## 静的資材ビルドについて
 - 静的資材をビルドする場合は`yarn build`を実行
 - `dist`フォルダに一式出力される
-
-## WordPress用ビルドについて
-- WordPress用にCSSやJavaScriptをビルドする場合は`yarn buid:wp`コマンドを実行
-- `wordpress/themes/TEMPLATE_NAME/`内に`assets`フォルダと`images`フォルダが出力される
-  - `assets`フォルダにはビルドした各種CSSやJavaScriptが出力される
-  - `images`には画像が出力される
-
-## ビルドファイルでのWordPressの確認方法
-`functions.php`に下記のデバッグ用のコマンドを仕込んでいます
-
-```php
-if (WP_DEBUG) {
-    $root = "http://localhost:5173";
-    $css_ext = "scss";
-    $js_ext = "js";
-    wp_enqueue_script('vite-client', $root . '/@vite/client', array(), null, true);
-} else {
-    $root = get_template_directory_uri();
-    $css_ext = "css";
-    $js_ext = "js";
-}
-```
-
-この`WP_DEBUG`を`false`に変えることでWordPressがビルドファイルを読み込むようになります。（.wp-env.jsonの設定で`WP_DEBUG`は常に`true`になっています。こちらの値を変更するとDockerのコンテナが再構築され時間がかかるのでオススメしません）
-
-**※納品時には上記デバッグ用の記述を削除するのが望ましい。**
-
-## WordPressのログイン方法
-- `http://localhost:8888/wp-admin/`にアクセス
-- ID: `admin`
-- パスワード: `password`
-  - 初回は言語設定が英語なので日本語に変えておくと良い。
-
-## WordPressコンテンツの同期方法
-WordPress内で作成した記事やページ、その他設定などはNPM Scriptsの`wp-contents export`コマンドでバックアップファイルを出力できます。このバックアップファイルをGitなどで管理し、`wp-contents import`でそのバックアップファイルをインポートして開発者間でのWordPressコンテンツを同期できます。あくまで単一のバックアップファイルなので差分管理などはできず、頻繁な更新には向きません。（コンフリクトしてもどちらかのファイルしか採用できません）
 
 ## 自動インポートファイル生成機能
 

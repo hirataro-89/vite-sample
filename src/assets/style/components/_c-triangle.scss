@@ -2,7 +2,7 @@
 
 .c-triangle {
   aspect-ratio: 1/1;
-  width: rem(64);
+  width: calc(64 * var(--to-rem));
   background-color: var(--color-black);
   display: inline-block;
 }

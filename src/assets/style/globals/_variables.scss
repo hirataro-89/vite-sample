@@ -7,6 +7,11 @@
 }
 
 :root {
+  // 16pxを基準として、1pxあたりのremを計算
+  --to-rem: calc(tan(atan2(1px, var(--root-font-size))) * 1rem);
+  // how to use
+  // font-size: calc(16 * var(--to-rem));
+
   /* inner */
   --inner: 1080px;
   --padding-pc: 25px;
@@ -64,10 +69,6 @@
   //   margin-block-start: calc(32px + var(--leading-trim));
   // }
 
-  // 16pxを基準として、1pxあたりのremを計算
-  --to-rem: calc(tan(atan2(1px, var(--root-font-size))) * 1rem);
-  // how to use
-  // font-size: calc(16 * var(--to-rem));
 }
 
 @supports not (top: 1lh) {

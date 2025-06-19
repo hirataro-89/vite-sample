@@ -3,7 +3,7 @@
 .p-mv {
     position: relative;
     z-index: 1;
-    min-height: rem(400);
+    min-height: calc(400 * var(--to-rem));
 }
 
 .p-mv__inner {
@@ -16,24 +16,26 @@
     z-index: 2;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     width: 100%;
     color: #fff;
     text-align: center;
 }
 
 .p-mv__main-title {
-    font-size: rem(40);
-    @include mq(md){
-        font-size: rem(60);
+    font-size: calc(40 * var(--to-rem));
+
+    @include mq(md) {
+        font-size: calc(60 * var(--to-rem));
     }
 }
 
 .p-mv__sub-title {
-    margin-top: rem(20);
-    font-size: rem(20);
-    @include mq(md){
-        font-size: rem(35);
+    margin-top: calc(20 * var(--to-rem));
+    font-size: calc(20 * var(--to-rem));
+
+    @include mq(md) {
+        font-size: calc(35 * var(--to-rem));
     }
 }
 

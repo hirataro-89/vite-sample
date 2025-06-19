@@ -1,10 +1,20 @@
-import { defineConfig } from "vite";
-import { resolve, relative, extname } from "path";
-import { globSync } from "glob";
-import { fileURLToPath } from "node:url";
+import {
+  defineConfig
+} from "vite";
+import {
+  resolve,
+  relative,
+  extname,
+  basename
+} from "path";
+import {
+  globSync
+} from "glob";
 import autoprefixer from "autoprefixer";
 import handlebars from "vite-plugin-handlebars";
-import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
+import {
+  ViteImageOptimizer
+} from "vite-plugin-image-optimizer";
 import convertImages from './bin/vite-plugin-convert-images.js';
 
 // サイトのルートを決定
@@ -13,27 +23,13 @@ const root = resolve(__dirname, "src");
 // 環境編集を取得
 const isDev = process.env.NODE_ENV === "development";
 
-// WordPress用ビルドのinput設定。WordPress用にはhtmlファイルは不要なため、scssとjsのみをビルド対象にする
-const inputsForWordPress = {
-  style: resolve(root, "assets", "style", "style.scss"),
-  // 動的にファイルを取得する @see https://rollupjs.org/configuration-options/#input
-  ...Object.fromEntries(
-    globSync("src/assets/js/*.js").map((file) => [
-      relative(
-        "src/assets/js",
-        file.slice(0, file.length - extname(file).length),
-      ),
-      resolve(__dirname, file),
-    ]),
-  ),
-
-};
-
 // 静的開発用のinput設定。静的資材用にはhtmlファイルを経由してscss,jsなどをビルドする
 const inputsForStatic = {
   style: resolve(root, "assets", "style", "style.scss"),
   ...Object.fromEntries(
-    globSync("src/**/*.html").map((file) => [
+    globSync("src/**/*.html")
+    .filter((file) => !basename(file).startsWith("_"))
+    .map((file) => [
       relative("src", file.slice(0, file.length - extname(file).length)),
       resolve(__dirname, file),
     ]),
@@ -47,14 +43,13 @@ export default defineConfig(({
   base: "./",
   server: {
     port: 5173,
-    origin: mode == "wp" ? undefined : "http://localhost:5173",
+    origin: "http://localhost:5173",
   },
   build: {
     minify: false,
-    outDir: mode === "wp" ?
-      resolve(__dirname, "wordpress/themes/TEMPLATE_NAME/") : resolve(__dirname, "dist"),
+    outDir: resolve(__dirname, "dist"),
     rollupOptions: {
-      input: mode === "wp" ? inputsForWordPress : inputsForStatic,
+      input: inputsForStatic,
       output: {
         entryFileNames: "assets/js/[name].js",
         chunkFileNames: "assets/js/[name].js",
@@ -96,7 +91,9 @@ export default defineConfig(({
     }),
     // 開発環境では画像をwebpに変換
     // format: 'webp' or 'avif'で画像の変換形式を指定
-    isDev ? convertImages({ format: 'webp' }): null,
+    isDev ? convertImages({
+      format: 'webp'
+    }) : null,
 
     // コンポーネントのディレクトリを読み込む
     handlebars({

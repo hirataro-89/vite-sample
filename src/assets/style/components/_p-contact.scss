@@ -1,0 +1,20 @@
+@use "../globals/"as *;
+
+.p-contact {
+  padding-block: calc(40 * var(--to-rem));
+
+  @include mq(md) {
+    padding-block: calc(80 * var(--to-rem));
+  }
+}
+
+.p-contact__contents {
+  display: grid;
+  margin-block-start: calc(40 * var(--to-rem));
+  gap: calc(40 * var(--to-rem));
+  place-items: center;
+
+  @include mq(md) {
+    gap: calc(80 * var(--to-rem));
+  }
+}
